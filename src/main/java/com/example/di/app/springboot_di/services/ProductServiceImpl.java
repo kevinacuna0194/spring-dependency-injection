@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.di.app.springboot_di.models.Product;
-import com.example.di.app.springboot_di.repositories.ProductRepository;
+import com.example.di.app.springboot_di.repositories.ProductRepositoryImpl;
 
 /** Capa Acceso a Datos */
-public class ProductService {
+public class ProductServiceImpl implements IProductService {
 
-    private ProductRepository productRepository = new ProductRepository();
+    private ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
 
+    @Override
     public List<Product> findAll() {
         // stream es una secuencia de datos 
         // map aplica una transformación a cada producto
@@ -25,6 +26,7 @@ public class ProductService {
         }).collect(Collectors.toList());
     }
 
+    @Override
     public Product findById(Long id) {
         return productRepository.findById(id);
     }

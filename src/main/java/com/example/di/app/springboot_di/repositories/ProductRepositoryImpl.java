@@ -5,11 +5,11 @@ import java.util.List;
 
 import com.example.di.app.springboot_di.models.Product;
 
-public class ProductRepository {
+public class ProductRepositoryImpl implements IProductRepository {
 
     private List<Product> products;
 
-    public ProductRepository() {
+    public ProductRepositoryImpl() {
         this.products = new ArrayList<>(
                 List.of(
                         new Product(1L, "Monitor", 200.0),
@@ -19,10 +19,12 @@ public class ProductRepository {
                         new Product(5L, "Smartwatch", 150.0)));
     }
 
+    @Override
     public List<Product> findAll() {
         return products;
     }
 
+    @Override
     public Product findById(Long id) {
         return products.stream() // convierte la lista en un stream
                 .filter(p -> p.getId().equals(id)) // filtra por id
