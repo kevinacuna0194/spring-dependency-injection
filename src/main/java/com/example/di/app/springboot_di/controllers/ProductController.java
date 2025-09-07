@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.di.app.springboot_di.models.Product;
-import com.example.di.app.springboot_di.services.ProductServiceImpl;
+import com.example.di.app.springboot_di.services.IProductService;
 
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
 
     @Autowired
-    private ProductServiceImpl productService;
+    private IProductService productService;
 
     @GetMapping("/list") // http://localhost:8080/api/product/list
     public List<Product> list() {
