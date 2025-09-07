@@ -9,9 +9,10 @@ import com.example.di.app.springboot_di.repositories.ProductRepository;
 /** Capa Acceso a Datos */
 public class ProductService {
 
-    private ProductRepository productRepository;
+    private ProductRepository productRepository = new ProductRepository();
 
     public List<Product> findAll() {
+        // stream es una secuencia de datos 
         // map aplica una transformación a cada producto
         // Aplicamos un 22% de IVA a cada producto
         // collect convierte el stream de vuelta a una lista
