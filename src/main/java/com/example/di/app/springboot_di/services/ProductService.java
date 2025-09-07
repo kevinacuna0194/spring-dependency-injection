@@ -17,8 +17,9 @@ public class ProductService {
         // Aplicamos un 22% de IVA a cada producto
         // collect convierte el stream de vuelta a una lista
         return productRepository.findAll().stream().map(p -> {
-            p.setPrice(p.getPrice() * 1.22); // IVA 22%
-            return p;
+            Double priceWithTax = p.getPrice() * 1.22; // IVA 22%
+            Product product = new Product(p.getId(), p.getName(), priceWithTax);
+            return product;
         }).collect(Collectors.toList());
     }
 
