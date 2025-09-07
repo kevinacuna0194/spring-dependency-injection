@@ -3,13 +3,18 @@ package com.example.di.app.springboot_di.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.example.di.app.springboot_di.models.Product;
 import com.example.di.app.springboot_di.repositories.ProductRepositoryImpl;
 
-/** Capa Acceso a Datos */
+/** Logica de Negocio */
+@Component
 public class ProductServiceImpl implements IProductService {
 
-    private ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
+    @Autowired
+    private ProductRepositoryImpl productRepository;
 
     @Override
     public List<Product> findAll() {
