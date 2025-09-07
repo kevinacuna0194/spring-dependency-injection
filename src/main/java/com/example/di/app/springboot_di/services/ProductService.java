@@ -18,7 +18,9 @@ public class ProductService {
         // collect convierte el stream de vuelta a una lista
         return productRepository.findAll().stream().map(p -> {
             Double priceWithTax = p.getPrice() * 1.22; // IVA 22%
-            Product product = new Product(p.getId(), p.getName(), priceWithTax);
+            // Product product = new Product(p.getId(), p.getName(), priceWithTax);
+            Product product = (Product) p.clone();
+            product.setPrice(priceWithTax);
             return product;
         }).collect(Collectors.toList());
     }
