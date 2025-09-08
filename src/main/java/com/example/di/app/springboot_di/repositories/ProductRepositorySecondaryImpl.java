@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.di.app.springboot_di.models.Product;
 
-@Repository
+@Repository("beanProductRepositorySecondary")
 public class ProductRepositorySecondaryImpl implements IProductRepository {
 
     @Override
