@@ -16,6 +16,15 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     private IProductRepository productRepository;
 
+    // public ProductServiceImpl(IProductRepository productRepository) {
+    //     this.productRepository = productRepository;
+    // }
+    
+    // @Autowired
+    // public void setProductRepository(IProductRepository productRepository) {
+    //     this.productRepository = productRepository;
+    // }
+    
     @Override
     public List<Product> findAll() {
         // stream es una secuencia de datos 

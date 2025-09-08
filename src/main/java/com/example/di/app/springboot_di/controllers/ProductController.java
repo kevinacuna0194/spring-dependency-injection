@@ -15,8 +15,12 @@ import com.example.di.app.springboot_di.services.IProductService;
 @RequestMapping("/api/product")
 public class ProductController {
 
-    @Autowired
+    // @Autowired
     private IProductService productService;
+
+    public ProductController(IProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/list") // http://localhost:8080/api/product/list
     public List<Product> list() {
