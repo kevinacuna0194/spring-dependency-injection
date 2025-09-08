@@ -3,11 +3,13 @@ package com.example.di.app.springboot_di.repositories;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.example.di.app.springboot_di.models.Product;
 
 /** Capa de Acceso a Datos. Persistencia */
+@Primary
 @Repository
 public class ProductRepositoryImpl implements IProductRepository {
 

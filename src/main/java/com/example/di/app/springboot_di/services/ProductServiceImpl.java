@@ -23,7 +23,7 @@ public class ProductServiceImpl implements IProductService {
     // @Autowired
     // public void setProductRepository(IProductRepository productRepository) {
     //     this.productRepository = productRepository;
-    // }
+    // }Priamry 
     
     @Override
     public List<Product> findAll() {
