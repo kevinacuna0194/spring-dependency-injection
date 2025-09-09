@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.example.di.app.springboot_di.models.Product;
@@ -18,8 +20,17 @@ public class ProductServiceImpl implements IProductService {
     // @Qualifier("beanProductRepositorySecondary") // Especifica el Bean a inyectar por nombre
     private IProductRepository productRepository;
 
-    public ProductServiceImpl(@Qualifier("beanProductRepositorySecondary") IProductRepository productRepository) {
+    // @Autowired
+    private Environment environment;
+
+    @Value("${config.priceTax:1.21}") // Valor por defecto 1.21 Si no existe la propiedad.
+    private Double priceTax;
+
+    // Inyeccion de Dependencias via Constructor
+    // @Autowired // Opcional en Spring si solo hay un constructor
+    public ProductServiceImpl(@Qualifier("beanProductRepositorySecondary") IProductRepository productRepository, Environment environment) {
         this.productRepository = productRepository;
+        this.environment = environment;
     }
 
     // Inyeccion de Dependencias via Setter
@@ -35,10 +46,17 @@ public class ProductServiceImpl implements IProductService {
         // Aplicamos un 22% de IVA a cada producto
         // collect convierte el stream de vuelta a una lista
         return productRepository.findAll().stream().map(p -> {
-            Double priceWithTax = p.getPrice() * 1.22; // IVA 22%
+
+            // System.out.println(environment.getProperty("config.priceTax"));
+            // System.out.println(priceTax);
+
+            Double priceWithTax = p.getPrice() * priceTax; // IVA 22%
+
             // Product product = new Product(p.getId(), p.getName(), priceWithTax);
             Product product = (Product) p.clone();
+
             product.setPrice(priceWithTax);
+
             return product;
         }).collect(Collectors.toList());
     }
