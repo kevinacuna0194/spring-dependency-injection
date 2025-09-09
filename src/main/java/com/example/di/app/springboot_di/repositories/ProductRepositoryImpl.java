@@ -5,12 +5,13 @@ import java.util.List;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.example.di.app.springboot_di.models.Product;
 
 /** Capa de Acceso a Datos. Persistencia */
-@RequestScope // El Bean vive durante una petición HTTP
+// @RequestScope // El Bean vive durante una petición HTTP
+@SessionScope // El Bean vive durante una sesión HTTP
 @Primary // Marca este Bean como el principal cuando hay múltiples implementaciones
 @Repository("beanProductRepository") // Nombre del Bean
 public class ProductRepositoryImpl implements IProductRepository {

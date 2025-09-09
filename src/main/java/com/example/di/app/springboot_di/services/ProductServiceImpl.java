@@ -3,9 +3,9 @@ package com.example.di.app.springboot_di.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.di.app.springboot_di.models.Product;
 import com.example.di.app.springboot_di.repositories.IProductRepository;
@@ -18,9 +18,8 @@ public class ProductServiceImpl implements IProductService {
     // @Qualifier("beanProductRepositorySecondary") // Especifica el Bean a inyectar por nombre
     private IProductRepository productRepository;
 
-    public ProductServiceImpl(@Qualifier("beanProductRepositorySecondary")
-    IProductRepository productRepository) {
-    this.productRepository = productRepository;
+    public ProductServiceImpl(@Qualifier("beanProductRepositorySecondary") IProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     // Inyeccion de Dependencias via Setter
