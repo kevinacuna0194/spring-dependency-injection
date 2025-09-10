@@ -16,21 +16,20 @@ import com.example.di.app.springboot_di.repositories.IProductRepository;
 @Service
 public class ProductServiceImpl implements IProductService {
 
-    @Autowired
+    // @Autowired
     // @Qualifier("beanProductRepositorySecondary") // Especifica el Bean a inyectar por nombre
     private IProductRepository productRepository;
 
     // @Autowired
-    private Environment environment;
+    // private Environment environment;
 
     @Value("${config.priceTax:1.21}") // Valor por defecto 1.21 Si no existe la propiedad.
     private Double priceTax;
 
     // Inyeccion de Dependencias via Constructor
     // @Autowired // Opcional en Spring si solo hay un constructor
-    public ProductServiceImpl(@Qualifier("beanProductRepositorySecondary") IProductRepository productRepository, Environment environment) {
+    public ProductServiceImpl(@Qualifier("beanProductRepositoryJson") IProductRepository productRepository ) {
         this.productRepository = productRepository;
-        this.environment = environment;
     }
 
     // Inyeccion de Dependencias via Setter

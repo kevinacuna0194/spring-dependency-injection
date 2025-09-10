@@ -14,7 +14,7 @@ public class ProductRepositoryJson implements IProductRepository {
     private List<Product> products;
 
     public ProductRepositoryJson() {
-        Resource resource = new ClassPathResource("json/products.json");
+        Resource resource = new ClassPathResource("json/product.json");
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {

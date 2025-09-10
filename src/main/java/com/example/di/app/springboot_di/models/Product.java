@@ -4,6 +4,7 @@ public class Product implements Cloneable {
     private Long id;
     private String name;
     private Double price;
+    private boolean inStock;
 
     public Product() {
     }
@@ -12,6 +13,13 @@ public class Product implements Cloneable {
         this.id = id;
         this.name = name;
         this.price = price;
+    }
+
+    public Product(Long id, String name, Double price, boolean inStock) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.inStock = inStock;
     }
 
     public Long getId() {
@@ -34,6 +42,14 @@ public class Product implements Cloneable {
         return price;
     }
 
+    public boolean isInStock() {
+        return inStock;
+    }
+
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
+    }
+
     public void setPrice(Double price) {
         this.price = price;
     }
@@ -43,7 +59,7 @@ public class Product implements Cloneable {
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {
-            return new Product(this.id, this.name, this.price);
+            return new Product(this.id, this.name, this.price, this.inStock);
         }
     }
 }
